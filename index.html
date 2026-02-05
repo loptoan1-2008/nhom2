@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hội Trại Truyền Thống 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onclick="initAudio()">
+
+    <div id="welcome-overlay">
+        <h1>HỘI TRẠI TRUYỀN THỐNG 2026<br><span style="font-size: 1.5rem; font-family: 'Pacifico'">Sắt Son Hồn Việt</span></h1>
+    </div>
+
+    <canvas id="main-canvas"></canvas>
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <h1>HỘI TRẠI 2026</h1>
+        <p>Sắt Son Hồn Việt</p>
+    </header>
+
+    <div class="container">
+        <div class="session-card morning-bg" onclick="toggleGallery('g1', event)">
+            <h2>☀️ BUỔI SÁNG: RỰC RỠ KHAI MẠC</h2>
+            <h4>Buổi sáng tại hội trại tràn đầy không khí hứng khởi. Các lớp cùng nhau khởi động với những trò chơi tập thể nhẹ nhàng, rèn luyện sự nhanh nhẹn, phối hợp và tinh thần đồng đội. Không khí nhộn nhịp còn lan tỏa qua các hoạt động chuẩn bị trại, dựng lều, trang trí khu vực và sắp xếp dụng cụ cho các trò chơi buổi chiều. Đây cũng là thời gian để các thành viên trò chuyện, làm quen và xây dựng sự gắn kết giữa các lớp. Buổi sáng chính là mở đầu hoàn hảo, giúp mọi người tràn đầy năng lượng, sẵn sàng hòa mình vào những thử thách, trò chơi và trải nghiệm đáng nhớ trong cả ngày hội trại.</h4>
+            <div id="tug-of-war-game" onclick="event.stopPropagation()">
+                <div class="game-stats">
+                    <span>⏱️: <b id="timer">60</b>s</span>
+                    <span>Thế trận: <b id="click-count">0</b>/1200</span>
+                </div>
+                
+                <div class="rope-track">
+                    <div id="main-rope" class="rope">
+                        <div class="rope-texture"></div>
+                        <div id="red-ribbon" class="ribbon"></div>
+                    </div>
+                    <div class="marker start">MẤT TRẠI</div>
+                    <div class="marker center">HÒA</div>
+                    <div class="marker end">THẮNG</div>
+                </div>
+
+                <button id="pull-btn" onclick="handlePull()">KÉO!!!</button>
+                <button id="reset-btn" onclick="resetGame()" style="display:none; background:#555;">THỬ LẠI</button>
+                <p id="game-message"></p>
+
+                <div class="gallery-trigger" onclick="toggleGalleryFromBtn('g1', this, event)">
+                    <p>Xem album ảnh buổi sáng</p>
+                    <span class="toggle-arrow">▼</span>
+                </div>
+            </div>
+
+            <div id="g1" class="gallery-container">
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="0bb4d6f146751456d758c607c0e209b8.jpeg">
+                    <p class="polaroid-caption">Trang trí trại</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="44a9ffdf24dd61a75307e03a0d9e805f.jpeg">
+                    <p class="polaroid-caption">Hoa quả Cần Thơ</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="74d24bddb012b5d6ee347a9c25c03327.jpeg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="613685536_122227530350248860_3363879032656172626_n.jpg">
+                    <p class="polaroid-caption">Ngủ trưa</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="613896015_122227529504248860_8963270093320101659_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="614972264_122227530386248860_7092676547960999978_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="614981576_122227532060248860_1210385732687095834_n.jpg">
+                    <p class="polaroid-caption">STOP</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615095428_122227528940248860_5559638043682025125_n.jpg">
+                    <p class="polaroid-caption">HEHE</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615140834_122227532210248860_1201972756485035397_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+                
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615162485_122227532132248860_2350353458236239936_n.jpg">
+                    <p class="polaroid-caption">Chơi puzzle</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615163331_122227529666248860_1836130146030253083_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615174780_122227530236248860_5879110997159175693_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615255132_122227530188248860_1240410778605021200_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615283433_122227529456248860_3349375354301179970_n.jpg">
+                    <p class="polaroid-caption">Thử đồ</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+                
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615328762_122227530302248860_9086950632103425145_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615829115_122227529474248860_7189113984331391106_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -2deg">
+                    <img src="615406727_122227530368248860_3567383332900049794_n.jpg">
+                    <p class="polaroid-caption">Bữa trưa vui vẻ</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>  
+                
+            </div>
+        </div>
+
+        <div class="session-card noon-bg" onclick="toggleGallery('g2', event)">
+            <h2>🍴 BUỔI CHIỀU: VUI CHƠI TRẠI</h2>
+            <h4> Buổi chiều trong hội trại truyền thống là khoảng thời gian sôi nổi nhất, nơi các khối 10, 11, 12 cùng hòa mình vào những trò chơi tập thể và không khí gắn kết. Khối 10 tham gia trò chơi “Nhịp Bước Đoàn Kết”, đề cao sự tin tưởng, phối hợp và tinh thần đồng đội khi cùng vượt mê cung, thu thập và ghép mảnh. Khối 11 với “Nhanh tay, nhanh mắt, nhanh trí” giúp rèn luyện sự khéo léo, tập trung và trí tuệ tập thể. Khối 12 thử thách bền bỉ trong “Bạch tuộc truyền ván”, thể hiện ý chí và tinh thần dìu dắt đàn em. Song song với đó, hoạt động bán đồ ăn giữa các lớp diễn ra nhộn nhịp, tạo nên sự giao lưu, sẻ chia và tinh thần tập thể rõ nét. Tất cả những hoạt động ấy đã góp phần tạo nên một buổi chiều hội trại tràn đầy năng lượng, để lại ký ức đẹp và thắt chặt hơn nữa tình đoàn kết giữa các thế hệ học sinh Chuyên Lê Quý Đôn.</h4>
+
+            <div id="candy-crush-game" onclick="event.stopPropagation()">
+                <div class="game-header">
+                    <span>Tích lũy: <b id="score">0</b>/1000💵</span>
+                    <button onclick="resetPuzzle()" class="btn-reset">Chơi lại</button>
+                </div>
+                
+                <div id="grid" class="puzzle-grid"></div>
+                
+                <div id="win-message" style="display:none; text-align:center; margin-top:10px;">
+                    <h3 style="color: #ffeb3b; font-family: 'Pacifico';">🎉 Chúc mừng! Bạn đã kiếm đủ 1000 xu để ăn sập hội trại! 🍢</h3>
+                </div>
+
+                <div class="gallery-trigger" onclick="toggleGalleryFromBtn('g2', this, event)">
+                    <p>Khám phá kho ảnh buổi chiều</p>
+                    <span class="toggle-arrow">▼</span>
+                </div>
+            </div>
+
+            <div id="g2" class="gallery-container">
+                <div class="polaroid" style="--r: 1deg">
+                    <img src="6bf25ffcf92afb92b26cbc74ccaf6a77.jpeg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+                
+                <div class="polaroid" style="--r: 1deg">
+                    <img src="615415405_122227529990248860_5236265921319222669_n.jpg">
+                    <p class="polaroid-caption">Tui là robot</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: 1deg">
+                    <img src="615253741_122227530422248860_8865133414233971337_n.jpg">
+                    <p class="polaroid-caption">Bị tha hóa</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: 1deg">
+                    <img src="615322716_122227530338248860_2931509261706582235_n.jpg">
+                    <p class="polaroid-caption">Lời lỗ không quan trọng</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: 1deg">
+                    <img src="b97d06ac322c5e0ca7339df0850ea624.jpeg">
+                    <p class="polaroid-caption">Mlem</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-card night-bg" onclick="toggleGallery('g3', event)">
+            <h2>🔥 BUỔI TỐI: ĐÊM LỬA THIÊNG</h2>
+            <h4> Dưới ánh đèn rực rỡ của hội trại, chúng tôi cùng nhau tạo nên những kỷ niệm khó quên. Những ván đánh bài diễn ra sôi nổi, tiếng cười vang lên mỗi khi có người “thua đau”. Trò chơi ma sói càng làm không khí thêm hồi hộp, ai cũng cố gắng che giấu thân phận, tranh luận náo nhiệt đến tận khuya. Bên cạnh đó, hơn mười con gà nướng vàng ươm được bày ra, mùi thơm lan tỏa khắp khu trại, mọi người quây quần vừa ăn vừa trò chuyện rôm rả. Khi đêm xuống, cả nhóm cùng quẩy hết mình với các tiết mục văn nghệ, nhảy múa không biết mệt. Cao trào nhất là màn tạt nước vào nhau, ai cũng ướt sũng nhưng đầy tiếng cười. Tất cả đã tạo nên một hội trại trẻ trung, gắn kết và tràn ngập niềm vui.</h4>
+            
+            <div id="campfire-activity" onclick="event.stopPropagation()">
+                <p id="fire-message">Di chuyển đuốc vào củi để đốt lửa</p>
+
+                <div id="torch-container">
+                    <div id="torch">
+                        <div class="torch-fire"></div>
+                    </div>
+                </div>
+                
+                <div id="wood-pile-area">
+                    <div id="campfire-flame-container" style="display:none;">
+                        <div class="flame-layer red"></div>
+                        <div class="flame-layer orange"></div>
+                        <div class="flame-layer yellow"></div>
+                        <div class="flame-layer white"></div>
+                        <div class="fire-particles">
+                            <div class="particle p1"></div>
+                            <div class="particle p2"></div>
+                            <div class="particle p3"></div>
+                            <div class="particle p4"></div>
+                            <div class="particle p5"></div>
+                        </div>
+                    </div>
+
+                    <div id="wood-pile">
+                        <div class="log l1"></div>
+                        <div class="log l2"></div>
+                        <div class="log l3"></div>
+                        <div class="log l4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-extension" style="display: flex; justify-content: center; padding: 20px 0; margin-top: -10px;">
+                <div class="gallery-trigger" onclick="toggleGalleryFromBtn('g3', this, event)" 
+                    style="background: rgba(255,255,255,0.1); 
+                        padding: 12px 25px; 
+                        border-radius: 20px; 
+                        text-align: center; 
+                        cursor: pointer; 
+                        border: 1px solid rgba(255,255,255,0.2);
+                        backdrop-filter: blur(5px);">
+                    <span style="font-size: 0.8rem; font-weight: bold; color: white; display: block; letter-spacing: 1px;">
+                        XEM KHOẢNH KHẮC ĐÊM LỬA TRẠI
+                    </span>
+                    <span class="toggle-arrow" style="color: white; display: inline-block; transition: 0.3s; font-size: 1.2rem;">▼</span>
+                </div>
+            </div>
+
+            <div id="g3" class="gallery-container">
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="615137842_122227530032248860_4062973565668655733_n.jpg">
+                    <p class="polaroid-caption">Đêm rét chung chăn thành đôi tri kỷ</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="615154769_122227530170248860_8322010967538427542_n.jpg">
+                    <p class="polaroid-caption">hi</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="615211108_122227530224248860_6977001467715503019_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="615414960_122227530020248860_3207087053835895182_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="615420224_122227529924248860_188136769962336766_n.jpg">
+                    <p class="polaroid-caption">Khò khò</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="615432873_122227529378248860_3468584095278009674_n.jpg">
+                    <p class="polaroid-caption">Đông đủ lớp</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="615444823_122227530200248860_3479296458144082550_n.jpg">
+                    <p class="polaroid-caption">Văn nghệ cháy</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="616044318_122227532786248860_2640929177670273050_n.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="att.8Eet8XkKIaJQ__63kFRXsmhigBVhBLqRF4rFQqU4J7s.jpg">
+                    <p class="polaroid-caption">peak quá</p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="att.EpwLH9hEdlzA9al8aq6tLl2tm1j91fQ5gVLZjS1jDjs.jpg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+
+                <div class="polaroid" style="--r: -3deg">
+                    <img src="b581321d69509d0816a1f482dffba8a7.jpeg">
+                    <p class="polaroid-caption"></p>
+                    <div class="fire-react" onclick="dropFire(this, event)">
+                        <span class="fire-icon">🔥</span>
+                        <span class="fire-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment-section">
+            <h3>Lưu bút điện tử 📝</h3>
+            <textarea id="comment-input" rows="3" placeholder="Gửi lời chúc đến hội trại..."></textarea>
+            <button class="btn-send" onclick="addComment()">Gửi lời chúc</button>
+            <div id="comment-list"></div>
+            <a id="show-more" style="display:none; cursor:pointer; color:var(--accent); margin-top:15px; font-weight:bold;" onclick="renderComments(true)">Xem thêm...</a>
+        </div>
+
+        <div class="session-card cinema-bg">
+            <div class="cinema-header">
+                <h2>🎬 RẠP CHIẾU BÓNG KỶ NIỆM</h2>
+            </div>
+            <div id="cinema-theater" style="display:flex;flex-direction:column;align-items:center;width:100%;">
+                <div class="main-screen" id="theater-screen" style="position:relative;width:100%;max-width:800px;aspect-ratio:16/9;background:#000;overflow:hidden;border:10px solid #222;display:flex;justify-content:center;align-items:center;">
+                    <div class="curtain-left" style="position:absolute;top:0;left:0;width:50%;height:100%;background:#800000;z-index:10;transition:transform 1.5s ease-in-out;border-right:1px solid #4d0000;background-image:repeating-linear-gradient(to right,#800000,#800000 10px,#a52a2a 20px);"></div>
+                    <div class="curtain-right" style="position:absolute;top:0;right:0;width:50%;height:100%;background:#800000;z-index:10;transition:transform 1.5s ease-in-out;border-left:1px solid #4d0000;background-image:repeating-linear-gradient(to right,#800000,#800000 10px,#a52a2a 20px);"></div>
+                    <div class="video-wrapper" style="width:100%;height:100%;z-index:5;">
+                        <video id="cinema-player" controls style="width:100%;height:100%;object-fit:contain;"
+                            onplay="document.getElementById('bg-music').pause();document.getElementById('theater-screen').classList.add('open-curtains');"
+                            onpause="document.getElementById('bg-music').play();"
+                            onended="document.getElementById('bg-music').play();">
+                            <source src="0CB141B3-B036-4452-BC85-98381598296F.mov" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="film-strip-container" style="width:100%;overflow-x:auto;margin-top:20px;padding:10px 0;">
+                    <div class="film-strip" style="display:flex;gap:15px;padding:0 20px;width:max-content;">
+                        <div class="film-item" onclick="selectVid('0CB141B3-B036-4452-BC85-98381598296F.mov', this)" style="flex:0 0 120px;cursor:pointer;">
+                            <div class="sprocket-holes"></div>
+                            <div style="width:100%;height:60px;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;border:1px solid #555;">PHIM 1</div>
+                            <div class="sprocket-holes"></div>
+                        </div>
+                        <div class="film-item" onclick="selectVid('2CD2C467-4181-4378-A450-2E8A19E87C67.mov', this)" style="flex:0 0 120px;cursor:pointer;">
+                            <div class="sprocket-holes"></div>
+                            <div style="width:100%;height:60px;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;border:1px solid #555;">PHIM 2</div>
+                            <div class="sprocket-holes"></div>
+                        </div>
+                        <div class="film-item" onclick="selectVid('4BB09D36-DD16-4DFD-AAD7-FB2F990F214D.mov', this)" style="flex:0 0 120px;cursor:pointer;">
+                            <div class="sprocket-holes"></div>
+                            <div style="width:100%;height:60px;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;border:1px solid #555;">PHIM 3</div>
+                            <div class="sprocket-holes"></div>
+                        </div>
+                        <div class="film-item" onclick="selectVid('31E2B0D0-D1E0-4F4C-AC91-CD6AD320D39C.mov', this)" style="flex:0 0 120px;cursor:pointer;">
+                            <div class="sprocket-holes"></div>
+                            <div style="width:100%;height:60px;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;border:1px solid #555;">PHIM 4</div>
+                            <div class="sprocket-holes"></div>
+                        </div>
+                        <div class="film-item" onclick="selectVid('61D1D8FD-2368-4B49-9222-D1E76EE6D125.mov', this)" style="flex:0 0 120px;cursor:pointer;">
+                            <div class="sprocket-holes"></div>
+                            <div style="width:100%;height:60px;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;border:1px solid #555;">PHIM 5</div>
+                            <div class="sprocket-holes"></div>
+                        </div>
+                        <div class="film-item" onclick="selectVid('175F6FD7-A3E4-4A5C-9C32-8BE42E6B3166.mov', this)" style="flex:0 0 120px;cursor:pointer;">
+                            <div class="sprocket-holes"></div>
+                            <div style="width:100%;height:60px;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;border:1px solid #555;">PHIM 6</div>
+                            <div class="sprocket-holes"></div>
+                        </div>
+                        <div class="film-item" onclick="selectVid('8505D88C-BDAB-4841-AD11-7D967990AC63.mov', this)" style="flex:0 0 120px;cursor:pointer;">
+                            <div class="sprocket-holes"></div>
+                            <div style="width:100%;height:60px;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;border:1px solid #555;">PHIM 7</div>
+                            <div class="sprocket-holes"></div>
+                        </div>
+                        <div class="film-item" onclick="selectVid('415193C0-E289-4F60-99ED-4100CB42495A.mov', this)" style="flex:0 0 120px;cursor:pointer;">
+                            <div class="sprocket-holes"></div>
+                            <div style="width:100%;height:60px;background:#333;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;border:1px solid #555;">PHIM 8</div>
+                            <div class="sprocket-holes"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Về Tác Giả</h4>
+                <p>Trang báo tường số được thực hiện bởi:</p>
+                <span class="author-name">Nhóm 2</span>
+                <p style="margin-top: 10px;">Lớp: 12T1 - Niên khóa 2023-2026<br>Trường THPT Chuyên Lê Quý Đôn</p>
+            </div>
+            <div class="footer-section">
+                <h4>Thông Điệp</h4>
+                <p>"Hội trại không chỉ là những cuộc vui, đó là nơi lưu giữ thanh xuân và tinh thần đoàn kết."</p>
+            </div>
+            <div class="footer-section">
+                <h4>Liên Hệ</h4>
+                <p>Email: hieuhotxoan191108@gmail.com<br>Số điện thoại: 0123 456 789</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 12 Toán 1 (23-26) - Nhóm 2</p>
+        </div>
+    </footer>
+
+    <script>
+        let started = false;
+        function initAudio() {
+            if (started) return;
+            started = true;
+            document.getElementById('welcome-overlay').style.opacity = '0';
+            setTimeout(() => document.getElementById('welcome-overlay').style.display = 'none', 1000);
+            document.getElementById('bg-music').play();
+            startFireworks();
+        }
+
+        function toggleGallery(id, event) {
+            if (event.target.closest('.polaroid')) return;
+            const g = document.getElementById(id);
+            g.style.display = (g.style.display === 'grid') ? 'none' : 'grid';
+        }
+
+        function dropFire(el, event) {
+            event.stopPropagation();
+            el.classList.toggle('active');
+            let countEl = el.querySelector('.fire-count');
+            let currentCount = parseInt(countEl.innerText);
+            el.classList.contains('active') ? countEl.innerText = currentCount + 1 : countEl.innerText = Math.max(0, currentCount - 1);
+        }
+
+        const canvas = document.getElementById('main-canvas');
+        const ctx = canvas.getContext('2d');
+        let fw = [], stars = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.onresize = resize;
+        resize();
+
+        for(let i=0; i<150; i++) {
+            stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 2, opacity: Math.random() });
+        }
+
+        function startFireworks() {
+            setInterval(createFirework, 800);
+            animate();
+        }
+
+        function createFirework() {
+            const x = Math.random() * canvas.width;
+            const y = canvas.height;
+            const targetY = Math.random() * (canvas.height / 2);
+            const color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+            fw.push({ x, y, targetY, color, particles: [], exploded: false });
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(Math.sin(Date.now()*0.001 + s.opacity*10))})`;
+                ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2); ctx.fill();
+            });
+            fw.forEach((f, idx) => {
+                if (!f.exploded) {
+                    f.y -= 10;
+                    ctx.fillStyle = f.color;
+                    ctx.fillRect(f.x, f.y, 3, 10);
+                    if (f.y <= f.targetY) {
+                        f.exploded = true;
+                        for(let i=0; i<40; i++) f.particles.push({ x: f.x, y: f.y, dx: (Math.random()-0.5)*10, dy: (Math.random()-0.5)*10, life: 50 });
+                    }
+                } else {
+                    f.particles.forEach((p, pIdx) => {
+                        p.x += p.dx; p.y += p.dy; p.life--;
+                        ctx.fillStyle = f.color; ctx.globalAlpha = p.life/50;
+                        ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+                        ctx.globalAlpha = 1;
+                        if(p.life <= 0) f.particles.splice(pIdx, 1);
+                    });
+                    if(f.particles.length === 0) fw.splice(idx, 1);
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
+        let comments = [];
+        function addComment() {
+            const input = document.getElementById('comment-input');
+            if(!input.value.trim()) return;
+            comments.unshift({text: input.value, time: new Date().toLocaleTimeString()});
+            input.value = '';
+            renderComments();
+        }
+
+        function renderComments(all = false) {
+            const list = document.getElementById('comment-list');
+            const showMore = document.getElementById('show-more');
+            list.innerHTML = '';
+            const data = all ? comments : comments.slice(0, 5);
+            data.forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'comment-item';
+                div.innerHTML = `<b>Bạn bè:</b><br>${c.text}<br><small style="color:#aaa">${c.time}</small>`;
+                list.appendChild(div);
+            });
+            showMore.style.display = (comments.length > 5 && !all) ? 'block' : 'none';
+        }
+        
+        let clicks = 0;
+        let timeLeft = 60;
+        let gameActive = false;
+        let timerId = null;
+        let decayId = null;
+
+        function handlePull() {
+            if (!gameActive && timeLeft === 60) {
+                gameActive = true;
+                timerId = setInterval(() => {
+                    timeLeft--;
+                    document.getElementById('timer').innerText = timeLeft;
+                    if (timeLeft <= 0) endGame(false);
+                }, 1000);
+
+                decayId = setInterval(() => {
+                    if (gameActive) {
+                        clicks -= 1.8; // Đối thủ kéo liên tục
+                        updateUI();
+                        if (clicks <= -120) endGame(false); // Thua nếu bị kéo quá sâu về bên trái
+                    }
+                }, 100);
+            }
+
+            if (gameActive) {
+                clicks += 6; // Lực kéo của bạn
+                updateUI();
+                if (clicks >= 1200) endGame(true); // Thắng ở mốc 200
+            }
+        }
+
+        function updateUI() {
+            const rope = document.getElementById('main-rope');
+            const countDisplay = document.getElementById('click-count');
+            
+            countDisplay.innerText = Math.floor(clicks);
+            
+            // Tính toán vị trí 'left' của sợi dây
+            // Cân bằng (0đ) -> left: -50%
+            // Thắng (200đ) -> left: 0%
+            // Thua (-120đ) -> left: -80%
+            let basePos = -50;
+            let offset = (clicks / 1200) * 50; 
+            let finalPos = basePos + offset;
+            
+            rope.style.left = finalPos + "%";
+
+            // Hiệu ứng rung khi kéo
+            rope.classList.add('shake-rope');
+            setTimeout(() => rope.classList.remove('shake-rope'), 100);
+        }
+
+        function endGame(isWin) {
+            gameActive = false;
+            clearInterval(timerId);
+            clearInterval(decayId);
+            const msg = document.getElementById('game-message');
+            msg.innerText = isWin ? "🎉 BẠN ĐÃ KÉO SẬP TRẠI ĐỐI THỦ!" : "💀 BẠN ĐÃ BỊ KÉO TUỘT ĐI RỒI!";
+            msg.style.color = isWin ? "#4aff4a" : "#ff4d4d";
+            document.getElementById('pull-btn').style.display = 'none';
+            document.getElementById('reset-btn').style.display = 'inline-block';
+        }
+
+        function resetGame() {
+            clicks = 0; timeLeft = 60; gameActive = false;
+            document.getElementById('timer').innerText = "60";
+            updateUI();
+            document.getElementById('game-message').innerText = "";
+            document.getElementById('pull-btn').style.display = 'inline-block';
+            document.getElementById('reset-btn').style.display = 'none';
+        }
+
+        const torch = document.getElementById('torch');
+        const activity = document.getElementById('campfire-activity');
+        const flameContainer = document.getElementById('campfire-flame-container');
+        const msg = document.getElementById('fire-message');
+        const wood = document.getElementById('wood-pile');
+
+        let isDragging = false;
+        let burnTime = 0;
+        let burnInterval = null;
+
+        torch.addEventListener('mousedown', () => { isDragging = true; });
+        window.addEventListener('mouseup', () => { 
+            isDragging = false; 
+            clearInterval(burnInterval);
+            burnInterval = null;
+            burnTime = 0;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const rect = activity.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+            
+            // Giới hạn trong khung
+            x = Math.max(20, Math.min(rect.width - 20, x));
+            y = Math.max(20, Math.min(rect.height - 20, y));
+            
+            torch.style.left = (x - 10) + 'px';
+            torch.style.top = (y - 50) + 'px';
+            
+            // Kiểm tra chạm củi
+            const tRect = torch.getBoundingClientRect();
+            const wRect = wood.getBoundingClientRect();
+            
+            if(!(tRect.right < wRect.left || tRect.left > wRect.right || 
+                tRect.bottom < wRect.top || tRect.top > wRect.bottom)) {
+                if(!burnInterval && flameContainer.style.display === 'none') {
+                    burnInterval = setInterval(() => {
+                        burnTime++;
+                        msg.innerText = `🔥 Đang nhóm lửa: ${burnTime}s`;
+                        if(burnTime >= 5) {
+                            flameContainer.style.display = 'block';
+                            msg.innerText = "LỬA TRẠI ĐÃ BÙNG CHÁY! 🔥";
+                            
+                            // Thêm logic: Củi biến mất
+                            wood.classList.add('burned-out'); 
+                            
+                            // Ẩn đuốc
+                            torch.style.display = 'none';
+                            
+                            clearInterval(burnInterval);
+                        }
+                    }, 1000);
+                }
+            } else {
+                clearInterval(burnInterval);
+                burnInterval = null;
+                burnTime = 0;
+                if(flameContainer.style.display === 'none') msg.innerText = "Đưa đuốc vào củi để đốt";
+            }
+        });
+
+        const gridDisplay = document.getElementById('grid');
+        const scoreDisplay = document.getElementById('score');
+        const winMsg = document.getElementById('win-message');
+        const width = 6;
+        // Bộ icon đã sửa lỗi hiển thị
+        const items = ['🍢', '🥤', '🌭', '🍗', '🍦', '🍩']; 
+        let squares = [];
+        let score = 0;
+        let isGameOver = false;
+
+        function createBoard() {
+            isGameOver = false;
+            winMsg.style.display = 'none';
+            gridDisplay.style.opacity = '1';
+            gridDisplay.innerHTML = '';
+            squares = [];
+            
+            for (let i = 0; i < width * width; i++) {
+                const square = document.createElement('div');
+                square.setAttribute('draggable', true);
+                square.setAttribute('id', i);
+                square.className = 'cell';
+                let randomItem = Math.floor(Math.random() * items.length);
+                square.innerHTML = items[randomItem];
+                gridDisplay.appendChild(square);
+                squares.push(square);
+            }
+            addEvents();
+        }
+
+        function addEvents() {
+            squares.forEach(square => {
+                square.addEventListener('dragstart', dragStart);
+                square.addEventListener('dragover', e => e.preventDefault());
+                square.addEventListener('drop', dragDrop);
+            });
+        }
+
+        let squareIdBeingDragged, squareIdBeingReplaced;
+        let itemBeingDragged, itemBeingReplaced;
+
+        function dragStart() {
+            if(isGameOver) return;
+            itemBeingDragged = this.innerHTML;
+            squareIdBeingDragged = parseInt(this.id);
+        }
+
+        function dragDrop() {
+            if(isGameOver) return;
+            itemBeingReplaced = this.innerHTML;
+            squareIdBeingReplaced = parseInt(this.id);
+            
+            // Kiểm tra khoảng cách (chỉ cho phép đổi ô cạnh bên)
+            const validMoves = [
+                squareIdBeingDragged - 1, 
+                squareIdBeingDragged + 1, 
+                squareIdBeingDragged - width, 
+                squareIdBeingDragged + width
+            ];
+
+            if (validMoves.includes(squareIdBeingReplaced)) {
+                this.innerHTML = itemBeingDragged;
+                squares[squareIdBeingDragged].innerHTML = itemBeingReplaced;
+                checkMatches();
+            }
+        }
+
+        function checkMatches() {
+            // Check hàng ngang
+            for (let i = 0; i < 34; i++) {
+                let rowOfThree = [i, i + 1, i + 2];
+                let decidedItem = squares[i].innerHTML;
+                // Chặn lỗi check tràn hàng
+                if (i % width > 3) continue; 
+
+                if (rowOfThree.every(index => squares[index].innerHTML === decidedItem)) {
+                    addScore(30); // Mỗi bộ 3 được 30 xu
+                    rowOfThree.forEach(index => {
+                        squares[index].innerHTML = items[Math.floor(Math.random() * items.length)];
+                    });
+                }
+            }
+            // Check hàng dọc
+            for (let i = 0; i < 24; i++) {
+                let colOfThree = [i, i + width, i + width * 2];
+                let decidedItem = squares[i].innerHTML;
+
+                if (colOfThree.every(index => squares[index].innerHTML === decidedItem)) {
+                    addScore(30);
+                    colOfThree.forEach(index => {
+                        squares[index].innerHTML = items[Math.floor(Math.random() * items.length)];
+                    });
+                }
+            }
+        }
+
+        function addScore(amount) {
+            if(isGameOver) return;
+            score += amount;
+            scoreDisplay.innerHTML = score;
+            
+            // Điều kiện chiến thắng
+            if (score >= 1000) {
+                victory();
+            }
+        }
+
+        function victory() {
+            isGameOver = true;
+            winMsg.style.display = 'block';
+            gridDisplay.style.opacity = '0.5';
+            gridDisplay.style.pointerEvents = 'none';
+            // Hiệu ứng pháo hoa có thể gọi từ hàm startFireworks() cũ của bạn
+            if(typeof startFireworks === "function") startFireworks();
+        }
+
+        function resetPuzzle() {
+            score = 0;
+            scoreDisplay.innerHTML = 0;
+            createBoard();
+        }
+
+        createBoard();
+        // Tự động kiểm tra liên tục các bộ 3 ngẫu nhiên khi mới tạo bảng
+        setInterval(checkMatches, 500);
+
+        function playVideo(youtubeId, element) {
+            const player = document.getElementById('cinema-player');
+            
+            // Đổi link video
+            player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+            
+            // Cập nhật trạng thái active cho danh sách
+            document.querySelectorAll('.film-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // Hiệu ứng cuộn màn hình lên đầu rạp phim
+            document.querySelector('.main-screen').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function handleFiles(files) {
+            const list = document.getElementById('video-list');
+            
+            Array.from(files).forEach(file => {
+                const fileURL = URL.createObjectURL(file);
+                const item = document.createElement('div');
+                item.className = 'film-item';
+                
+                // Tạo Thumbnail tự động
+                generateThumbnail(fileURL).then(thumbUrl => {
+                    item.innerHTML = `
+                        <div class="sprocket-holes"></div>
+                        <div class="film-thumb" style="background-image: url('${thumbUrl}')"></div>
+                        <span>${file.name.substring(0, 15)}...</span>
+                    `;
+                });
+
+                item.onclick = () => {
+                    const player = document.getElementById('cinema-player');
+                    player.src = fileURL;
+                    player.play();
+                    
+                    // Hiệu ứng mở rèm
+                    document.querySelector('.main-screen').classList.add('playing');
+                    
+                    // Active item
+                    document.querySelectorAll('.film-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                };
+
+                list.appendChild(item);
+            });
+        }
+
+        // Hàm xử lý trích xuất ảnh từ video
+        function generateThumbnail(videoUrl) {
+            return new Promise((resolve) => {
+                const video = document.createElement('video');
+                const canvas = document.createElement('canvas');
+                video.src = videoUrl;
+                video.currentTime = 1; // Lấy khung hình ở giây thứ 1
+                video.muted = true;
+                
+                video.onloadeddata = () => {
+                    // Đợi video render khung hình
+                    setTimeout(() => {
+                        canvas.width = 160;
+                        canvas.height = 90;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL());
+                    }, 500);
+                };
+            });
+        }
+
+        window.addEventListener('load', function() {
+        const video = document.getElementById('cinema-player');
+        const canvas = document.getElementById('auto-thumb');
+        const screen = document.getElementById('theater-screen');
+
+        // Chờ video tải xong thông tin để chụp ảnh
+        video.addEventListener('loadeddata', function() {
+            // Nhảy đến giây thứ 2 để lấy cảnh đẹp hơn làm thumb
+            video.currentTime = 2;
+        });
+
+        video.addEventListener('seeked', function() {
+            const ctx = canvas.getContext('2d');
+            canvas.width = 300;
+            canvas.height = 160;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            // Sau khi chụp xong, quay về giây đầu để người dùng xem từ đầu
+            video.currentTime = 0;
+        });
+    });
+
+    function playCurrentVideo() {
+        const video = document.getElementById('cinema-player');
+        const screen = document.getElementById('theater-screen');
+        
+        // Mở rèm và phát video
+        screen.classList.add('open');
+        video.play();
+    }
+
+    const campVideo = document.getElementById('cinema-player');
+    const bgMusic = document.getElementById('bg-music'); // ID của thẻ audio nhạc nền
+
+    if (campVideo && bgMusic) {
+        // Khi bắt đầu phát video
+        campVideo.onplay = function() {
+            bgMusic.pause();
+        };
+
+        // Khi video bị tạm dừng
+        campVideo.onpause = function() {
+            bgMusic.play();
+        };
+
+        // Khi video kết thúc
+        campVideo.onended = function() {
+            bgMusic.play();
+        };
+    }
+    function changeMovie(videoSrc, element) {
+        const player = document.getElementById('cinema-player');
+        const screen = document.getElementById('theater-screen');
+        
+        // Reset rèm về trạng thái đóng trước khi đổi phim (tùy chọn)
+        screen.classList.remove('open');
+        
+        // Đổi nguồn video và phát
+        player.src = videoSrc;
+        player.load();
+        player.play();
+        
+        // Đánh dấu cuộn phim đang chọn
+        document.querySelectorAll('.film-item').forEach(item => item.style.opacity = '0.6');
+        element.style.opacity = '1';
+    }
+    function selectVid(src, el) {
+        const player = document.getElementById('cinema-player');
+        const screen = document.getElementById('theater-screen');
+        
+        // Đổi nguồn video
+        player.src = src;
+        player.play();
+        
+        // Mở rèm nếu đang đóng
+        screen.classList.add('open-curtains');
+        
+        // Hiệu ứng chọn cuộn phim
+        document.querySelectorAll('.film-item').forEach(item => item.style.border = 'none');
+        el.style.border = '2px solid #e50914';
+    }
+
+    function toggleGalleryFromBtn(id, btnEl, event) {
+        event.stopPropagation(); // Không cho sự kiện ăn ra ngoài thẻ to
+        const g = document.getElementById(id);
+        const isOpening = (g.style.display !== 'grid');
+        
+        // Đóng/Mở gallery
+        g.style.display = isOpening ? 'grid' : 'none';
+        
+        // Hiệu ứng xoay mũi tên
+        if (isOpening) {
+            btnEl.classList.add('active');
+            // Tự động cuộn xuống album ảnh cho mượt
+            setTimeout(() => {
+                g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 150);
+        } else {
+            btnEl.classList.remove('active');
+        }
+    }
+    </script>
+</body>
+</html>
